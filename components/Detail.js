@@ -8,7 +8,9 @@ function RenderPatient(props) {
     
         if (patient != null) {
             return(
-                <ListItem 
+                <>
+                <Text style={{fontWeight: "bold", margin: 10, fontSize:30}}>Details</Text>
+                 <ListItem 
                 hideChevron={true}
                 onPress={() => props.onPress(patient.id)}
                 leftAvatar={
@@ -28,19 +30,10 @@ function RenderPatient(props) {
                     <Text style={{fontWeight: "bold"}}> Appointment Date :</Text> {patient.date}
                     </Text>
               </ListItem>
+                </>
+               
 
 
-                // <Card
-                // featuredTitle={patient.name}
-                // image= {
-                //     <View>
-                //         <Image source={patient.image}/>
-
-                //     </View>
-                // }
-                // >
-                   
-                // </Card>
             );
         }
         else {
