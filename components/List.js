@@ -49,7 +49,7 @@
 // export default List
 
 import React from 'react';
-import { View, FlatList, SafeAreaView,Text } from 'react-native';
+import { View, FlatList, SafeAreaView,Text,Image } from 'react-native';
 import { ListItem ,Avatar} from 'react-native-elements';
 
 function List(props) {
@@ -58,13 +58,24 @@ function List(props) {
 
         return (
             
-                <ListItem
+                <ListItem bottomDivider
                     key={index}
                     title={item.name}
                     subtitle={item.status}
                     hideChevron={true}
                     onPress={() => props.onPress(item.id)}
-                    leftAvatar={{ source: require('../assets/icon.png')}}
+                    leftAvatar={
+                       
+                        <View>
+                            <Image source={item.image}
+                            style={{ width: 40, height: 40 }}/>
+
+                        </View>
+                    }
+                    // leftAvatar={{ source: require('../assets/icon.png')}}
+                    // source={{ uri: 'https://picsum.photos/200/300'}}
+                    // size="small"
+
                     />
                    
                   

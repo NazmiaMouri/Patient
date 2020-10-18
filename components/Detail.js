@@ -10,9 +10,13 @@ function RenderPatient(props) {
             return(
                 <Card
                 featuredTitle={patient.name}
-                image={require('../assets/icon.png')}>
+                image={patient.image}>
                     <Text style={{margin: 10}}>
-                        {patient.status}
+                    <Text style={{fontWeight: "bold"}}> Name :</Text> {patient.name}{"\n"}
+                    <Text style={{fontWeight: "bold"}}> Age :</Text> {patient.age}{"\n"}
+                    <Text style={{fontWeight: "bold"}}> Gender :</Text> {patient.gender}{"\n"}
+                    <Text style={{fontWeight: "bold"}}> AppointMent Status :</Text> {patient.status}{"\n"}
+                    <Text style={{fontWeight: "bold"}}> Appointment Date :</Text> {patient.date}
                     </Text>
                 </Card>
             );

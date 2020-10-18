@@ -5,7 +5,7 @@ export const PATIENTS =
         {
         id: 0,
         name:'Andrew',
-        image: '../assets/icon.png',
+        image: require('../assets/man.png'),
         age:'30',
         gender:'Male',
         status:'Confirm',
@@ -15,7 +15,7 @@ export const PATIENTS =
         {
         id: 1,
         name:'Lio',
-        image: '../assets/icon.png',
+        image: require('../assets/man.png'),
         age:'30',
         gender:'Male',
         status:'Pending',
@@ -25,7 +25,7 @@ export const PATIENTS =
         {
         id: 2,
         name:'Bella',
-        image: '../assets/icon.png',
+        image: require('../assets/man.png'),
         age:'20',
         gender:'Female',
         status:'Confirm',
@@ -35,7 +35,7 @@ export const PATIENTS =
         {
         id: 3,
         name:'Alexa',
-        image: '../assets/icon.png',
+        image: require('../assets/man.png'),
         age:'30',
         gender:'Female',
         status:'Cancel',
