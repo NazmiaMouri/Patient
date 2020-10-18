@@ -72,9 +72,7 @@ function List(props) {
 
                         </View>
                     }
-                    // leftAvatar={{ source: require('../assets/icon.png')}}
-                    // source={{ uri: 'https://picsum.photos/200/300'}}
-                    // size="small"
+                  
 
                     />
                    
@@ -84,6 +82,7 @@ function List(props) {
 
     return (
         <SafeAreaView>
+            <Text style={{fontWeight: "bold", margin: 10, fontSize:30}}>Patient List</Text>
             <FlatList 
                 data={props.patients}
                 renderItem={renderListItem}
