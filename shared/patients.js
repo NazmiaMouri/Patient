@@ -1,9 +1,11 @@
+import { Icon } from "react-native-elements";
+
 export const PATIENTS =
     [
         {
         id: 0,
         name:'Andrew',
-        image: 'images/uthappizza.png',
+        image: '../assets/icon.png',
         age:'30',
         gender:'Male',
         status:'Confirm',
@@ -13,7 +15,7 @@ export const PATIENTS =
         {
         id: 1,
         name:'Lio',
-        image: 'images/uthappizza.png',
+        image: '../assets/icon.png',
         age:'30',
         gender:'Male',
         status:'Pending',
@@ -23,7 +25,7 @@ export const PATIENTS =
         {
         id: 2,
         name:'Bella',
-        image: 'images/uthappizza.png',
+        image: '../assets/icon.png',
         age:'20',
         gender:'Female',
         status:'Confirm',
@@ -33,7 +35,7 @@ export const PATIENTS =
         {
         id: 3,
         name:'Alexa',
-        image: 'images/uthappizza.png',
+        image: '../assets/icon.png',
         age:'30',
         gender:'Female',
         status:'Cancel',
