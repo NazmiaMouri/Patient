@@ -63,6 +63,7 @@ function List(props) {
                     title={item.name}
                     subtitle={item.status}
                     hideChevron={true}
+                    onPress={() => props.onPress(item.id)}
                     leftAvatar={{ source: require('../assets/icon.png')}}
                     />
                    
