@@ -5,7 +5,7 @@ import { View, FlatList, SafeAreaView,Text,Image,StyleSheet } from 'react-native
 import { ListItem ,Avatar} from 'react-native-elements';
 
 
-const [Selected, setSelected] = useState(null)
+// const [Selected, setSelected] = useState(null)
 
 function List(props) {
 

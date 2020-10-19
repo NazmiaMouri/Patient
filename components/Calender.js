@@ -14,15 +14,23 @@ export class Calender extends Component {
     super (props)
     this.state={
       date:['2020-10-28','2020-10-19','2020-10-29'],
-      selected:null
+      selected:null,
+      marked:null
     };
     this.onDayPress=this.onDayPress.bind(this)
   }
+  componentDidMount() {
+    this.anotherFunc();
+}
+anotherFunc = () => {
+  var obj = this.state.date.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true}}), {});
+  this.setState({ marked : obj});
+}
   onDayPress(day){
     this.setState({
       selected:day.dateString
     })
-    this.props.navigation.navigate('Slot')
+    this.props.navigation.navigate('Slot',{ bookingDate : day })
   }
   _onPressBack(){
     const {goBack}=this.props.navigation
@@ -46,19 +54,10 @@ export class Calender extends Component {
           onDayPress={this.onDayPress}
           style={styles.calendar}
           hideExtraDays
-          markedDates={{[this.state.selected]: {selected: true}}}
-          theme={{
-            selectedDayBackgroundColor: 'green',
-            todayTextColor: 'green',
-            arrowColor: 'green',
-          }}
-          // markedDates={{
-          //   [this.state.date].map((date)=>{
-          //     date : {selected: true, marked: true, selectedColor: 'blue'}
-
-          // }}}
+          markedDates={this.state.marked}
+          
         />
-      </View>
+      </View> 
     );
   }
 }

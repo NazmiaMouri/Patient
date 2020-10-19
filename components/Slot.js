@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, FlatList, SafeAreaView, Text, Image,Button } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { SLOTS } from "../shared/time";
+import moment from 'moment';
 
 
 export class Slot extends Component {
@@ -9,8 +10,10 @@ export class Slot extends Component {
     super(props);
     this.state = {
       timeslot: SLOTS,
+      appointedDate:this.props.route.params.bookingDate
     };
   }
+  
   renderSlotItem = ({ item, index }) => {
     return (
       <ListItem style={{alignItems: 'center',justifyContent: 'center'}}>
@@ -19,8 +22,12 @@ export class Slot extends Component {
     );
   };
   render() {
+  //  const m=this.state.appointedDate.month -1
+  //  const month = moment().month(10);
+  //  const date = this.state.appointedDate.day
     return (
       <SafeAreaView>
+         {/* <Text style={{ textAlign: 'center', fontWeight: "bold", margin: 10, fontSize: 30 }}>{month},{date}</Text> */}
         <Text style={{ textAlign: 'center', fontWeight: "bold", margin: 10, fontSize: 30 }}>Choose a slot</Text>
         <FlatList
           data={this.state.timeslot}
