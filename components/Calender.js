@@ -5,11 +5,15 @@ import {  StyleSheet,
   View,
   TouchableOpacity,
   StatusBar} from 'react-native';
+  import moment from 'moment';
+
+ 
 
 export class Calender extends Component {
   constructor(props){
     super (props)
     this.state={
+      date:['2020-10-28','2020-10-19','2020-10-29'],
       selected:null
     };
     this.onDayPress=this.onDayPress.bind(this)
@@ -25,6 +29,7 @@ export class Calender extends Component {
     goBack()
   }
   render() {
+    const today = moment().format("YYYY-MM-DD");
     return (
       <View style={styles.container}>
       <StatusBar barStyle="light-content"/>
@@ -36,6 +41,8 @@ export class Calender extends Component {
                     <Text style={Commonstyle.toolbarButton}></Text> */}
       </View>
         <Calendar
+          minDate={today}
+          disableAllTouchEventsForDisabledDays={true}
           onDayPress={this.onDayPress}
           style={styles.calendar}
           hideExtraDays
@@ -45,6 +52,11 @@ export class Calender extends Component {
             todayTextColor: 'green',
             arrowColor: 'green',
           }}
+          // markedDates={{
+          //   [this.state.date].map((date)=>{
+          //     date : {selected: true, marked: true, selectedColor: 'blue'}
+
+          // }}}
         />
       </View>
     );

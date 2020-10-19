@@ -14,7 +14,7 @@ export class Slot extends Component {
   renderSlotItem = ({ item, index }) => {
     return (
       <ListItem style={{alignItems: 'center',justifyContent: 'center'}}>
-        <Button title={item.time} onPress={() => navigation.navigate("Home")} />
+        <Button title={item.time} onPress={() => this.props.navigation.navigate("Appointment")} />
       </ListItem>
     );
   };

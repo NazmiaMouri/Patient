@@ -22,7 +22,7 @@ class Main extends Component {
         <View style={{flex:1}}>
             <List patients={this.state.patients} onPress={(patientId) => this.onPatientSelect(patientId)} />
             <Detail patient={this.state.patients.filter((patient) => patient.id === this.state.selectedPatient)[0]} />
-            <Slot patients={this.state.patients} onPress={(patientId) => this.onPatientSelect(patientId)} />
+            
         </View>
         
     );

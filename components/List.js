@@ -1,72 +1,23 @@
 
 
-import React,{Component} from 'react';
-import { View, FlatList, SafeAreaView,Text,Image } from 'react-native';
+import React,{useSatate} from 'react';
+import { View, FlatList, SafeAreaView,Text,Image,StyleSheet } from 'react-native';
 import { ListItem ,Avatar} from 'react-native-elements';
-import { PATIENTS } from '../shared/patients';
 
 
-// export class List extends Component {
-//     constructor(props){
-//         super(props)
-//         this.state = {
-//             patients: PATIENTS,
-//             selectedPatient: null
-//           };
-//         }
-    
-//    renderListItem = ({item, index}) => {
-
-//         return (
-            
-//                 <ListItem bottomDivider
-//                     key={index}
-//                     title={item.name}
-//                     subtitle={item.status}
-//                     hideChevron={true}
-//                     onPress={() => navigation.navigate('Detail')}
-//                     leftAvatar={
-                       
-//                         <View>
-//                             <Image source={item.image}
-//                             style={{ width: 40, height: 40 }}/>
-
-//                         </View>
-//                     }
-                  
-
-//                     />
-                   
-                  
-//         );
-//     };
-//     render() {
-        
-//         return (
-//             <SafeAreaView>
-//             <Text style={{fontWeight: "bold", margin: 10, fontSize:30}}>Patient List</Text>
-//             <FlatList 
-//                 data={patients}
-//                 renderItem={renderListItem}
-//                 keyExtractor={item => item.id.toString()}
-//                 />
-
-//             </SafeAreaView>
-//         )
-//     }
-// }
-
-// export default List
-
+const [Selected, setSelected] = useState(null)
 
 function List(props) {
+
+  
 
     const renderListItem = ({item, index}) => {
 
         return (
-            
-                <ListItem bottomDivider
-                    key={index}
+            <View >
+
+                 <ListItem bottomDivider
+                       key={index}
                     title={item.name}
                     subtitle={item.status}
                     hideChevron={true}
@@ -82,14 +33,18 @@ function List(props) {
                   
 
                     />
+
+            </View>
+               
+             
                    
                   
         );
     };
 
     return (
-        <SafeAreaView>
-            <Text style={{fontWeight: "bold", margin: 10, fontSize:30}}>Appointments</Text>
+        <SafeAreaView >
+          
             <FlatList 
                 data={props.patients}
                 renderItem={renderListItem}
@@ -100,6 +55,13 @@ function List(props) {
             
     );
 }
-
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      marginVertical: 50,
+      justifyContent: 'center',
+    },
+  });
 
 export default List;

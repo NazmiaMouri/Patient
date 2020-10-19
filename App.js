@@ -9,23 +9,32 @@ import Agenda from './components/Agenda'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Slot from './components/Slot';
+import Appointment from './components/tab/Appointment';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     < SafeAreaView style={styles.container}>
-      {/* <Login /> */}
-      {/* <Main/> */}
+    
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="login">
           <Stack.Screen name="login" component={Login} options={{ title: 'Login' }} />
           <Stack.Screen name="Home" component={CalendarsScreen} />
-          <Stack.Screen name="List" component={Main} />
           <Stack.Screen name="Slot" component={Slot} />
-          {/* <Stack.Screen name="Detail" component={Detail} /> */}
+          <Stack.Screen name="Appointment" component={Appointment} />
+        
+
+          
+      
         </Stack.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
+       
+      
 
     </ SafeAreaView>
   );
