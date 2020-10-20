@@ -15,19 +15,27 @@ export class Calender extends Component {
     super (props)
     this.state={
       patient:PATIENTS,
-      date:['2020-10-28','2020-10-19','2020-10-29'],
+      //date:['2020-10-28','2020-10-19','2020-10-29'],
+      date:[],
       selected:null,
       marked:null
     };
     this.onDayPress=this.onDayPress.bind(this)
   }
+  componentWillMount(){
+    var dt=[]
+    this.state.patient.map((each)=>dt.push(each.appointedDate))
+    this.setState({
+      date:dt
+    })
+    
+  }
   componentDidMount() {
-    this.anotherFunc();
-}
-anotherFunc = () => {
-  var obj = this.state.date.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true}}), {});
-  this.setState({ marked : obj});
-}
+    console.log(this.state.date)
+    var obj = this.state.date.reduce((c, v) => Object.assign(c, {[v]: {selected: true,marked: true}}), {});
+    this.setState({ marked : obj});
+  }
+// anotherFunc = () => 
   onDayPress(day){
     this.setState({
       selected:day.dateString
@@ -37,10 +45,15 @@ anotherFunc = () => {
   }
   componentDidUpdate(){
     var result=this.state.date.filter((date) => date === this.state.selected)[0]
+    // const monthNum=this.state.selected.month 
+    // const month = moment().months(this.state.selected.month -1 ).format('MMMM');
+  
+     const date=moment(this.state.selected).format("Do MMMM, YYYY ")
+    console.log(date)
      
       if( result != undefined || result != null){
         console.log(result)
-       this.props.navigation.navigate('Appointments')
+       this.props.navigation.navigate('Appointments',{ selectedDate: date, matchDate:this.state.selected})
   
       }else{
         <View>
@@ -54,6 +67,10 @@ anotherFunc = () => {
     goBack()
   }
   render() {
+     
+    // this.state.patient.map((each)=> this.setState({date:each.appointedDate}))
+ 
+    // console.log(dt)
     const today = moment().format("YYYY-MM-DD");
     return (
       <View style={styles.container}>

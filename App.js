@@ -28,7 +28,7 @@ export default function App() {
           <Stack.Screen name="Home" component={CalendarsScreen} />
           {/* <Stack.Screen name="Slot" component={Slot} /> */}
           {/* <Stack.Screen name="Appointment" component={Appointment} /> */}
-          <Stack.Screen name="Appointments" component={List} />
+          <Stack.Screen name="Appointments" component={List} options={({ route }) => ({ title: route.params.selectedDate })}/>
           <Stack.Screen name="Appointment Info" component={Detail} />
         
 

@@ -9,14 +9,17 @@ import {
 } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { PATIENTS } from "../shared/patients";
+import moment from 'moment';
 
-// const [Selected, setSelected] = useState(null)
+
+
 
 class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
       patient: PATIENTS,
+      date:this.props.route.params.matchDate
     };
   }
 
@@ -42,11 +45,17 @@ class List extends Component {
       );
     };
     const { navigate } = this.props.navigation;
+    console.log(this.state.date)
+    // var matchDate=moment(this.state.date).format("YYYY-MM-D ")
+    var list=this.state.patient.filter((patient) => moment(patient.appointedDate).isSame(this.state.date) )
+  //   console.log(matchDate)
+  //  console.log(this.state.date)
+  //   console.log(moment(this.state.date).format("YYYY-MM-D "))
     return (
       <SafeAreaView>
           
         <FlatList
-          data={this.state.patient}
+          data={list}
           renderItem={renderListItem}
           keyExtractor={(item) => item.id.toString()}
         />
