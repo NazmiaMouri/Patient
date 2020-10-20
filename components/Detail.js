@@ -21,53 +21,51 @@ function RenderPatient(props) {
           }
         >
           <Text>
-          <ListItem>
+            <ListItem>
               <Text style={{ fontWeight: "bold" }}> Appointment Time :</Text>
               <Text>{patient.appointedTime}</Text>{" "}
             </ListItem>
-            {'\n'}
+            {"\n"}
             <ListItem>
               <Text style={{ fontWeight: "bold" }}> Name :</Text>
               <Text>{patient.name}</Text>{" "}
             </ListItem>
-            {'\n'}
+            {"\n"}
             <ListItem>
-            <Text style={{ fontWeight: "bold" }}> Phone: :</Text>
-            <Text>{patient.phoneNo}</Text>
+              <Text style={{ fontWeight: "bold" }}> Phone: :</Text>
+              <Text>{patient.phoneNo}</Text>
             </ListItem>
-            {'\n'}
+            {"\n"}
             <ListItem>
-            <Text style={{ fontWeight: "bold" }}> Age :</Text>
-            <Text>{patient.age}</Text>
+              <Text style={{ fontWeight: "bold" }}> Age :</Text>
+              <Text>{patient.age}</Text>
             </ListItem>
-            {'\n'}
+            {"\n"}
             <ListItem>
-            <Text style={{ fontWeight: "bold" }}> Type :</Text>
-            <Text>{patient.type}</Text>
+              <Text style={{ fontWeight: "bold" }}> Type :</Text>
+              <Text>{patient.type}</Text>
             </ListItem>
-            {'\n'}
+            {"\n"}
             <ListItem>
-            <Text style={{ fontWeight: "bold" }}> Status :</Text>
-            <Text>{patient.status}</Text>
+              <Text style={{ fontWeight: "bold" }}> Status :</Text>
+              <Text>{patient.status}</Text>
             </ListItem>
-            {'\n'}
-             <ListItem>
-             <Text style={{ fontWeight: "bold" }}> Gender :</Text>{" "}
-            <Text>{patient.gender}</Text>
-            </ListItem>
-            {'\n'}
+            {"\n"}
             <ListItem>
-            <Text style={{ fontWeight: "bold" }}> Emergency :</Text>
-            <Text>{patient.emerg}</Text>
+              <Text style={{ fontWeight: "bold" }}> Gender :</Text>{" "}
+              <Text>{patient.gender}</Text>
             </ListItem>
-            {'\n'}
-            
-           
-             <ListItem>
-             <Text style={{ fontWeight: "bold" }}> Blood Group :</Text>{" "}
-            <Text>{patient.bloodGrp}</Text>
+            {"\n"}
+            <ListItem>
+              <Text style={{ fontWeight: "bold" }}> Emergency :</Text>
+              <Text>{patient.emerg}</Text>
             </ListItem>
+            {"\n"}
 
+            <ListItem>
+              <Text style={{ fontWeight: "bold" }}> Blood Group :</Text>{" "}
+              <Text>{patient.bloodGrp}</Text>
+            </ListItem>
           </Text>
         </ListItem>
       </ScrollView>

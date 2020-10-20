@@ -22,13 +22,11 @@ export default class Login extends Component {
       if (text === "admin") {
         this.setState({ userError: false });
       } else {
-        
       }
     } else {
       if (text === "admin") {
         this.setState({ passwordError: false });
       } else {
-        
       }
     }
   }
@@ -63,17 +61,11 @@ export default class Login extends Component {
             if (!this.state.userError && !this.state.passwordError) {
               this.props.navigation.navigate("Home");
             } else {
-              if(this.state.userError == true){
+              if (this.state.userError == true) {
                 this.setState({ errMsgUser: "Invalid Username" });
-
-              }
-              else if(this.state.passwordError == true){
+              } else if (this.state.passwordError == true) {
                 this.setState({ errMsgPass: "Invalid Password" });
-
               }
-
-             
-             
             }
           }}
         />
