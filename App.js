@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Login from './components/Login';
 import Main from './components/MainComponent';
 import Detail from './components/Detail';
+import List from './components/List';
 import CalendarsScreen from './components/Calender';
 import Agenda from './components/Agenda'
 import { NavigationContainer } from '@react-navigation/native';
@@ -25,8 +26,10 @@ export default function App() {
         <Stack.Navigator initialRouteName="login">
           <Stack.Screen name="login" component={Login} options={{ title: 'Login' }} />
           <Stack.Screen name="Home" component={CalendarsScreen} />
-          <Stack.Screen name="Slot" component={Slot} />
-          <Stack.Screen name="Appointment" component={Appointment} />
+          {/* <Stack.Screen name="Slot" component={Slot} /> */}
+          {/* <Stack.Screen name="Appointment" component={Appointment} /> */}
+          <Stack.Screen name="Appointments" component={List} />
+          <Stack.Screen name="Appointment Info" component={Detail} />
         
 
           

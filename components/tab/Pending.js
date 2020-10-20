@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native'
-import Main from '../MainComponent';
+import List from '../List';
 
 function Pending() {
     return (
@@ -8,7 +8,7 @@ function Pending() {
          <Text style={{ fontWeight: "bold", margin: 10, fontSize: 20 }}>
           Pending...
         </Text>
-        <Main/>
+        <List/>
         </>
         )
 }

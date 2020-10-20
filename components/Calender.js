@@ -6,6 +6,7 @@ import {  StyleSheet,
   TouchableOpacity,
   StatusBar} from 'react-native';
   import moment from 'moment';
+import { PATIENTS } from '../shared/patients';
 
  
 
@@ -13,6 +14,7 @@ export class Calender extends Component {
   constructor(props){
     super (props)
     this.state={
+      patient:PATIENTS,
       date:['2020-10-28','2020-10-19','2020-10-29'],
       selected:null,
       marked:null
@@ -30,7 +32,22 @@ anotherFunc = () => {
     this.setState({
       selected:day.dateString
     })
-    this.props.navigation.navigate('Slot',{ bookingDate : day })
+    
+       
+  }
+  componentDidUpdate(){
+    var result=this.state.date.filter((date) => date === this.state.selected)[0]
+     
+      if( result != undefined || result != null){
+        console.log(result)
+       this.props.navigation.navigate('Appointments')
+  
+      }else{
+        <View>
+          <Text styles={{textAlignment:'center'}}>No appointment available</Text>
+        </View>
+      }
+
   }
   _onPressBack(){
     const {goBack}=this.props.navigation
@@ -45,8 +62,7 @@ anotherFunc = () => {
         <TouchableOpacity onPress={() => this._onPressBack() }>
           {/* <Text >Back</Text> */}
           </TouchableOpacity>
-                    {/* <Text style={Commonstyle.toolbarTitle}></Text>
-                    <Text style={Commonstyle.toolbarButton}></Text> */}
+                  
       </View>
         <Calendar
           minDate={today}

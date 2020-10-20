@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { Text, View, Image, ScrollView } from "react-native";
 import { Card, ListItem } from "react-native-elements";
+import { PATIENTS } from "../shared/patients";
 
 function RenderPatient(props) {
   const patient = props.patient;
@@ -8,9 +9,6 @@ function RenderPatient(props) {
   if (patient != null) {
     return (
       <ScrollView>
-        <Text style={{ fontWeight: "bold", margin: 10, fontSize: 30 }}>
-          Details
-        </Text>
         <ListItem
           hideChevron={true}
           leftAvatar={
@@ -23,21 +21,53 @@ function RenderPatient(props) {
           }
         >
           <Text>
-            <Text style={{ fontWeight: "bold" }}> Name :</Text> {patient.name}
-            {"\n"}
-            <Text style={{ fontWeight: "bold" }}> Age :</Text> {patient.age}
-            {"\n"}
-            <Text style={{ fontWeight: "bold" }}> Gender :</Text>{" "}
-            {patient.gender}
-            {"\n"}
-            <Text style={{ fontWeight: "bold" }}>
-              {" "}
-              AppointMent Status :
-            </Text>{" "}
-            {patient.status}
-            {"\n"}
-            <Text style={{ fontWeight: "bold" }}> Appointment Date :</Text>{" "}
-            {patient.date}
+          <ListItem>
+              <Text style={{ fontWeight: "bold" }}> Appointment Time :</Text>
+              <Text>{patient.appointedTime}</Text>{" "}
+            </ListItem>
+            {'\n'}
+            <ListItem>
+              <Text style={{ fontWeight: "bold" }}> Name :</Text>
+              <Text>{patient.name}</Text>{" "}
+            </ListItem>
+            {'\n'}
+            <ListItem>
+            <Text style={{ fontWeight: "bold" }}> Phone: :</Text>
+            <Text>{patient.phoneNo}</Text>
+            </ListItem>
+            {'\n'}
+            <ListItem>
+            <Text style={{ fontWeight: "bold" }}> Age :</Text>
+            <Text>{patient.age}</Text>
+            </ListItem>
+            {'\n'}
+            <ListItem>
+            <Text style={{ fontWeight: "bold" }}> Type :</Text>
+            <Text>{patient.type}</Text>
+            </ListItem>
+            {'\n'}
+            <ListItem>
+            <Text style={{ fontWeight: "bold" }}> Status :</Text>
+            <Text>{patient.status}</Text>
+            </ListItem>
+            {'\n'}
+             <ListItem>
+             <Text style={{ fontWeight: "bold" }}> Gender :</Text>{" "}
+            <Text>{patient.gender}</Text>
+            </ListItem>
+            {'\n'}
+            <ListItem>
+            <Text style={{ fontWeight: "bold" }}> Emergency :</Text>
+            <Text>{patient.emerg}</Text>
+            </ListItem>
+            {'\n'}
+            
+           
+             <ListItem>
+             <Text style={{ fontWeight: "bold" }}> Blood Group :</Text>{" "}
+            <Text>{patient.bloodGrp}</Text>
+            </ListItem>
+
           </Text>
         </ListItem>
       </ScrollView>
@@ -47,9 +77,17 @@ function RenderPatient(props) {
   }
 }
 
-function Detail(props) {
-  // const patId = props.navigation.getParam('patId','');
-  return <RenderPatient patient={props.patient} />;
+class Detail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      patient: PATIENTS,
+    };
+  }
+  render() {
+    const patId = this.props.route.params.patId;
+    return <RenderPatient patient={this.state.patient[+patId]} />;
+  }
 }
 
 export default Detail;
