@@ -46,9 +46,7 @@ class List extends Component {
     var list = this.state.patient.filter((patient) =>
       moment(patient.appointedDate).isSame(this.state.date)
     );
-    //   console.log(matchDate)
-    //  console.log(this.state.date)
-    //   console.log(moment(this.state.date).format("YYYY-MM-D "))
+   
     return (
       <SafeAreaView>
         <FlatList
@@ -70,3 +68,6 @@ const styles = StyleSheet.create({
 });
 
 export default List;
+
+
+

@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Alert } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
+
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 export default class Login extends Component {
   constructor(props) {
@@ -33,6 +35,10 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          source={require("../assets/logo.png")}
+          style={{ width: 80, height: 80 }}
+        ></Image>
         <Text style={styles.title}>LOG IN</Text>
         <StatusBar style="auto" />
 
@@ -54,8 +60,15 @@ export default class Login extends Component {
           errorMessage={this.state.errMsgPass}
           //value={this.state.password}
         />
-        <Button
-          title="Log in"
+        <TouchableHighlight
+          style={{
+            backgroundColor: "rgb(53,156,164)",
+            width: 200,
+            padding: 10,
+            alignItems: "center",
+            borderRadius: 10,
+            color: "#fff",
+          }}
           // onPress={this.validateRegister}
           onPress={() => {
             if (!this.state.userError && !this.state.passwordError) {
@@ -68,7 +81,9 @@ export default class Login extends Component {
               }
             }
           }}
-        />
+        >
+          <Text style={{ fontWeight: "700", color: "#fff" }}>Login</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -77,12 +92,18 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignContent: "center",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "white",
+
+    // color:'white'
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    // color:'white',
+    padding: 10,
   },
   separator: {
     marginVertical: 30,
