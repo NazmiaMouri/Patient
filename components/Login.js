@@ -82,7 +82,7 @@ export default class Login extends Component {
             }
           }}
         >
-          <Text style={{ fontWeight: "700", color: "#fff" }}>Login</Text>
+          <Text style={{ fontWeight: "700", color: "#fff" ,fontSize:'20'}}>Login</Text>
         </TouchableHighlight>
       </View>
     );

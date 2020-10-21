@@ -24,7 +24,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="login"
          screenOptions={{
           headerStyle: {
-            backgroundColor: '#52BC91',
+            backgroundColor: 'rgb(53,156,164)',
             textAlign:'center'
           },
           headerTintColor: '#fff',
@@ -36,19 +36,9 @@ export default function App() {
           <Stack.Screen
             name="login"
             component={Login}
-            options={{ title: "Login" ,
-            headerStyle: {
-              backgroundColor: '#52BC91',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }
-          }}
           />
           <Stack.Screen name="Home" component={CalendarsScreen} />
-          {/* <Stack.Screen name="Slot" component={Slot} /> */}
-          {/* <Stack.Screen name="Appointment" component={Appointment} /> */}
+         
           <Stack.Screen
             name="Appointments"
             component={List}
