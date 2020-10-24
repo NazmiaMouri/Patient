@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
-
+import { StyleSheet, Text, View, TextInput, Button, Image ,TouchableHighlight} from "react-native";
+import moment from "moment";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input } from "react-native-elements";
-import { TouchableHighlight } from "react-native-gesture-handler";
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -43,22 +43,21 @@ export default class Login extends Component {
         <StatusBar style="auto" />
 
         <Input
-          //style={{  borderColor: 'gray', borderWidth: 1 , width: 15,marginBottom: 10, padding:10 }}
+         
           leftIcon={<Icon name="user" size={24} color="black" />}
           placeholder="Username"
           onChangeText={(text) => this.validate(text, "username")}
           errorMessage={this.state.errMsgUser}
-
-          //value={this.state.username}
+ 
         />
         <Input
-          //style={{ height: 40, borderColor: 'gray', borderWidth: 1 , width: 150,marginBottom: 10 ,padding:10 }}
+         
           placeholder="Password"
           secureTextEntry={true}
           leftIcon={<Icon name="key" size={24} color="black" />}
           onChangeText={(text) => this.validate(text, "password")}
           errorMessage={this.state.errMsgPass}
-          //value={this.state.password}
+         
         />
         <TouchableHighlight
           style={{
@@ -69,10 +68,20 @@ export default class Login extends Component {
             borderRadius: 10,
             color: "#fff",
           }}
-          // onPress={this.validateRegister}
+         
           onPress={() => {
+            
+            const date = moment().format("YYYY-MM-DD");
+            const today = moment(date).format("Do MMMM, YYYY ");
+           
+           
             if (!this.state.userError && !this.state.passwordError) {
-              this.props.navigation.navigate("Home");
+              this.props.navigation.navigate("Appointments",{
+                selectedDate: 'Today',
+                matchDate:date,
+              });
+              // this.props.navigation.navigate("Home")
+
             } else {
               if (this.state.userError == true) {
                 this.setState({ errMsgUser: "Invalid Username" });
@@ -82,7 +91,7 @@ export default class Login extends Component {
             }
           }}
         >
-          <Text style={{ fontWeight: "700", color: "#fff" ,fontSize:'20'}}>Login</Text>
+          <Text style={{ fontWeight: "700", color: "#fff" }}>Login</Text>
         </TouchableHighlight>
       </View>
     );

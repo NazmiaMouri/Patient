@@ -2,43 +2,30 @@ import React, { useSatate, Component } from "react";
 import {
   View,
   FlatList,
- 
+  SafeAreaView,
   Text,
   Image,
   StyleSheet,
   Button,
-  SafeAreaView
 } from "react-native";
-import { ListItem, Avatar,Header} from "react-native-elements";
+import { ListItem, Avatar } from "react-native-elements";
 import { PATIENTS } from "../shared/patients";
 import moment from "moment";
 
-class List extends Component {
+class Today extends Component {
   constructor(props) {
     super(props);
     this.state = {
       patient: PATIENTS,
-      date: this.props.route.params.matchDate,
-      
+     
+      today:this.props.route.params.todayDate
     };
-  }
-  componentDidUpdate(){
-    const newdate =this.props.route.params.matchDate
-    if(moment(this.state.date).isSame(newdate)){
-   console.log('true')
-    }else{
-      console.log('not same')
-      this.setState({date:newdate})
-    }
-
   }
 
   render() {
     const renderListItem = ({ item, index }) => {
-      console.log(item.name)
-      if(typeof item.name !== 'undefined' || item !== null ){
-        console.log('not empty --------------------------')
-      
+     
+        console.log(item)
         return (
        
           <View>
@@ -58,41 +45,22 @@ class List extends Component {
           </View>
         );
 
-      }
-       else{
-         return(<SafeAreaView style={{ backgroundColor:'red'}} ></SafeAreaView>)
-         
-       }
-
      
     };
     const { navigate } = this.props.navigation;
-    console.log(this.state.date);
+    // console.log(this.state.date);
   
     var list = this.state.patient.filter((patient) =>
-      moment(patient.appointedDate).isSame(this.state.date)
+      moment(patient.appointedDate).isSame(this.state.today)
     );
     console.log(list)
    
     return (
       <SafeAreaView>
-        {/* <Header
-  placement="left"
-  
-  centerComponent={{ text: 'Appointment List', style: { color: '#fff' } }}
-  rightComponent={{ icon: 'calendar', color: '#fff' }}
-/> */}
-        <View style={{display:'flex',margin:5, flexDirection:'row', justifyContent:"space-between"}}>
-        <Text style={{fontWeight:"bold" ,fontSize: 20}}>Appointment List</Text>
         <Button
-        style={{margin:5,backgroundColor: "rgb(53,156,164)",}}
           title="Calender"
           onPress={() => navigate("Home")}
-          color="rgb(53,156,164)"
         />
-
-        </View>
-       
         <FlatList
           data={list}
           renderItem={renderListItem}
@@ -111,7 +79,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default List;
+export default Today;
 
 
 

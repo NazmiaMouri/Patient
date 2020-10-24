@@ -15,7 +15,6 @@ export class Calender extends Component {
     super(props);
     this.state = {
       patient: PATIENTS,
-      //date:['2020-10-28','2020-10-19','2020-10-29'],
       date: [],
       selected: null,
       marked: null,
@@ -30,14 +29,14 @@ export class Calender extends Component {
     });
   }
   componentDidMount() {
-    console.log(this.state.date);
+    
     var obj = this.state.date.reduce(
       (c, v) => Object.assign(c, { [v]: { selected: true, marked: true } }),
       {}
     );
     this.setState({ marked: obj });
   }
-  // anotherFunc = () =>
+ 
   onDayPress(day) {
     this.setState({
       selected: day.dateString,
@@ -47,8 +46,7 @@ export class Calender extends Component {
     var result = this.state.date.filter(
       (date) => date === this.state.selected
     )[0];
-    // const monthNum=this.state.selected.month
-    // const month = moment().months(this.state.selected.month -1 ).format('MMMM');
+   
 
     const date = moment(this.state.selected).format("Do MMMM, YYYY ");
     console.log(date);
@@ -72,16 +70,14 @@ export class Calender extends Component {
     goBack();
   }
   render() {
-    // this.state.patient.map((each)=> this.setState({date:each.appointedDate}))
-
-    // console.log(dt)
+   
     const today = moment().format("YYYY-MM-DD");
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View>
           <TouchableOpacity onPress={() => this._onPressBack()}>
-            {/* <Text >Back</Text> */}
+         
           </TouchableOpacity>
         </View>
         <Calendar
