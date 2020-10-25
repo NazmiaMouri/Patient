@@ -12,6 +12,7 @@ import Login from "./components/Login";
 
 import Detail from "./components/Detail";
 import List from "./components/List";
+import DrawerNav from './components/DrawerNav'
 import Calender from "./components/Calender";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -32,7 +33,7 @@ function Home() {
   );
 }
 
-export default function App({ route, navigation }) {
+export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
@@ -77,7 +78,7 @@ export default function App({ route, navigation }) {
                color='#fff'
                size = {26}
                style={[styles.calenderBtnWrapper, styles.shadow]}
-               onPress={() => navigation.navigate("Home")}
+               onPress={() => navigation.openDrawer()}
              >
                {/* <Text style={styles.calenderBtnText}>Calender</Text> */}
              </Icon>)
@@ -85,7 +86,12 @@ export default function App({ route, navigation }) {
           />
 
           <Stack.Screen name="Appointment Info" component={Detail} />
+          
         </Stack.Navigator>
+       
+      </NavigationContainer>
+      <NavigationContainer>
+        <DrawerNav/>
       </NavigationContainer>
     </SafeAreaView>
   );
