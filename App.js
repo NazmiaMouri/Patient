@@ -68,11 +68,20 @@ export default function App({ route, navigation }) {
                 >
                   {/* <Text style={styles.calenderBtnText}>Calender</Text> */}
                 </Icon>
-
-               
-               
-              ),
-            })}
+),
+            
+              headerLeft: () => {
+                return(
+                <Icon
+               name='bars'
+               color='#fff'
+               size = {26}
+               style={[styles.calenderBtnWrapper, styles.shadow]}
+               onPress={() => navigation.navigate("Home")}
+             >
+               {/* <Text style={styles.calenderBtnText}>Calender</Text> */}
+             </Icon>)
+              },})}
           />
 
           <Stack.Screen name="Appointment Info" component={Detail} />
