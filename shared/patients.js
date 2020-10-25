@@ -10,7 +10,7 @@ export const PATIENTS = [
     age: "30",
     gender: "Male",
     status: "Confirm",
-
+    serialNo: 1,
     phoneNo: "+880 124 732 878",
     bloodGrp: "B+",
     onlineCons: "false",
@@ -19,14 +19,14 @@ export const PATIENTS = [
   },
   {
     id: 1,
-    appointedTime: "08:00 AM",
+    appointedTime: "09:00 AM",
     appointedDate: "2020-10-28",
     name: "Lio",
     image: require("../assets/man.png"),
     age: "30",
     gender: "Male",
     status: "Pending",
-
+    serialNo:2,
     phoneNo: "+880 124 732 878",
     bloodGrp: "B+",
     onlineCons: "false",
@@ -35,14 +35,14 @@ export const PATIENTS = [
   },
   {
     id: 2,
-    appointedTime: "08:00 AM",
+    appointedTime: "10:00 AM",
     appointedDate: "2020-10-29",
     name: "Bella",
     image: require("../assets/man.png"),
     age: "20",
     gender: "Female",
     status: "Confirm",
-
+    serialNo: 1,
     phoneNo: "+880 124 732 878",
     bloodGrp: "B+",
     onlineCons: "false",
@@ -51,14 +51,14 @@ export const PATIENTS = [
   },
   {
     id: 3,
-    appointedTime: "08:00 AM",
+    appointedTime: "11:00 AM",
     appointedDate: "2020-10-29",
     name: "Alexa",
     image: require("../assets/man.png"),
     age: "30",
     gender: "Female",
     status: "Cancel",
-
+    serialNo:2,
     phoneNo: "+880 124 732 878",
     bloodGrp: "B+",
     onlineCons: "false",
@@ -67,14 +67,14 @@ export const PATIENTS = [
   },
   {
     id: 4,
-    appointedTime: "08:00 AM",
+    appointedTime: "12:00 PM",
     appointedDate: "2020-10-30",
     name: "Alexa",
     image: require("../assets/man.png"),
     age: "30",
     gender: "Female",
     status: "Cancel",
-
+    serialNo:1,
     phoneNo: "+880 124 732 878",
     bloodGrp: "B+",
     onlineCons: "false",
@@ -82,3 +82,13 @@ export const PATIENTS = [
     emerg: "false",
   },
 ];
+// { list ? 
+        
+//   <FlatList
+//     data={list}
+//     renderItem={renderListItem}
+//     keyExtractor={(item) => item.id.toString()}
+//   />
+//   :
+//  <View><Text h1>Empty</Text></View>
+//  }

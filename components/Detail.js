@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Text, View, Image, ScrollView, StyleSheet } from "react-native";
 import { Card, ListItem } from "react-native-elements";
 import { PATIENTS } from "../shared/patients";
+import moment from "moment";
 
 function RenderPatient(props) {
   const patient = props.patient;
-
+ 
   if (patient != null) {
     return (
       <ScrollView>
