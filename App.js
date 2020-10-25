@@ -58,7 +58,7 @@ export default function App() {
             component={List}
             options={({ navigation, route }) => ({
               headerTitle: route.params.selectedDate,
-              headerRight: () => (
+              headerRight: (previous,) => (
                 
                    <Icon
                   name='calendar'
@@ -78,7 +78,7 @@ export default function App() {
                color='#fff'
                size = {26}
                style={[styles.calenderBtnWrapper, styles.shadow]}
-               onPress={() => navigation.openDrawer()}
+               onPress={() => navigation.navigate('drawer')}
              >
                {/* <Text style={styles.calenderBtnText}>Calender</Text> */}
              </Icon>)
@@ -86,13 +86,11 @@ export default function App() {
           />
 
           <Stack.Screen name="Appointment Info" component={Detail} />
-          
+          <Stack.Screen name="drawer" component={DrawerNav} />
         </Stack.Navigator>
        
       </NavigationContainer>
-      <NavigationContainer>
-        <DrawerNav/>
-      </NavigationContainer>
+      
     </SafeAreaView>
   );
 }
