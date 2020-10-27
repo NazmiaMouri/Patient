@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import Profile from './Profile'
+import Profile from './Dashboard'
 
 function DrawerNav() {
     const Drawer = createDrawerNavigator();

@@ -72,12 +72,13 @@ export default class Login extends Component {
             color: "#fff",
           }}
           onPress={() => {
+            this.props.onPress(true)
             const date = moment().format("YYYY-MM-DD");
             const today = moment(date).format("Do MMMM, YYYY ");
-            this.props.navigation.navigate("Appointments", {
-              selectedDate: "Today",
-              matchDate: date,
-            });
+            // this.props.navigation.navigate("Appointments", {
+            //   selectedDate: "Today",
+            //   matchDate: date,
+            // });
 
             // if (!this.state.userError && !this.state.passwordError) {
             //   this.props.navigation.navigate("Appointments", {

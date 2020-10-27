@@ -1,9 +1,9 @@
-import React from 'react';
+  import React from 'react';
 import {Text} from 'react-native'
 
 function Profile() {
     return (
-        <Text> Profile</Text>
+        <Text > Profile</Text>
     )
 }
 
