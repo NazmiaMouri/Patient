@@ -103,7 +103,7 @@ function ListStack({navigation}){
             name="Appointments"
             component={List}
             options={({ navigation, route }) => ({
-              headerTitle: route.params.selectedDate,
+              headerTitle: 'Today',
               headerRight: () => (
                 
                    <Icon
@@ -182,7 +182,7 @@ export default function App() {
   <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
           <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
           <Drawer.Screen name='My Profile'  component={ProfileStack}/>
-          <Drawer.Screen name="Appointments"  component={ListStack} />
+          <Drawer.Screen name="Appointments" initialParams={({route})=>{ selectedDate: route.params.selectedDate}} component={List} />
           <Drawer.Screen name="Settings"  component={SettingStack}/>
           
         </Drawer.Navigator>

@@ -20,6 +20,9 @@ class List extends Component {
       date: this.props.route.params.matchDate,
     };
   }
+  static navigationOptions = {
+    title: this.props.route.params.selectedDate
+  };
   componentDidUpdate() {
     const newdate = this.props.route.params.matchDate;
     if (moment(this.state.date).isSame(newdate)) {

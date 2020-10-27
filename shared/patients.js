@@ -4,7 +4,7 @@ export const PATIENTS = [
   {
     id: 0,
     appointedTime: "08:00 AM",
-    appointedDate: "2020-10-28",
+    appointedDate: "2020-10-26",
     name: "Andrew",
     image: require("../assets/man.png"),
     age: "30",

@@ -91,14 +91,15 @@ import moment from "moment";
                             />
                         )}
                         label="Today's Appointments"
-                        // onPress={()=>{
-                        //     const date = moment().format("YYYY-MM-DD");
-                        //     const today = moment(date).format("Do MMMM, YYYY ");
-                        //     props.navigation.navigate("Appointments", {
-                        //     selectedDate: "Today",
-                        //     matchDate: date,
-                        //     });
-                        // }}
+                        onPress={()=>{
+                            const date = moment().format("YYYY-MM-DD");
+                            // const today = moment(date).format("Do MMMM, YYYY ");
+                            props.navigation.navigate("Appointments",
+                            // , {
+                            // selectedDate: "Today",
+                            {matchDate: date,
+                            });
+                        }}
 
                    />
                     <DrawerItem 

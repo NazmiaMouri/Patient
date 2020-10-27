@@ -1,11 +1,11 @@
-import React from 'react'
-import { View } from 'react-native-ui-lib'
+import React from 'react';
+import {Text} from 'react-native'
 
 function Settings() {
     return (
-       <View>
+    
            <Text>Settings</Text>
-       </View>
+      
     )
 }
 
