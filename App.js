@@ -12,6 +12,7 @@ import Login from "./components/Login";
 
 import Detail from "./components/Detail";
 import List from "./components/List";
+import Settings from "./components/Settings";
 import Calender from "./components/Calender";
 import Profile from "./components/Profile";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -87,7 +88,83 @@ function ProfileStack({navigation}){
     </Stack.Navigator>
   )
 }
+function ListStack({navigation}){
+  return(
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor: "rgb(53,156,164)",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+    }}>
+      <Stack.Screen
+            name="Appointments"
+            component={List}
+            options={({ navigation, route }) => ({
+              headerTitle: route.params.selectedDate,
+              headerRight: () => (
+                
+                   <Icon
+                  name='calendar'
+                  color='#fff'
+                  size = {26}
+                  style={[styles.calenderBtnWrapper, styles.shadow]}
+                  onPress={() => navigation.navigate("Home")}
+                >
+                
+                </Icon>
+),
+            
+              headerLeft: () => {
+              
+                <Icon
+               name='bars'
+               color='#fff'
+               size = {26}
+               style={[styles.calenderBtnWrapper, styles.shadow]}
+               onPress={() => navigation.openDrawer()}
+             >
+             
+             </Icon>
+              },})}
+          />
 
+    </Stack.Navigator>
+  )
+}
+
+function SettingStack({navigation}){
+  return(
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor: "rgb(53,156,164)",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+    }}>
+      <Stack.Screen name ='Settings' component={Settings}
+      options={{
+        headerLeft: () => {
+         return(
+          <Icon
+         name='bars'
+         color='#fff'
+         size = {26}
+         style={[styles.calenderBtnWrapper, styles.shadow]}
+         onPress={() => navigation.openDrawer()}
+       >
+       
+       </Icon>
+         )}
+      }}
+      />
+    </Stack.Navigator>
+  )
+}
  
 
 export default function App() {
@@ -102,10 +179,12 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <NavigationContainer>
-  <Drawer.Navigator   >
+  <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
           <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
           <Drawer.Screen name='My Profile'  component={ProfileStack}/>
-          <Drawer.Screen name="Today's Appointment"  component={List}/>
+          <Drawer.Screen name="Appointments"  component={ListStack} />
+          <Drawer.Screen name="Settings"  component={SettingStack}/>
+          
         </Drawer.Navigator>
       
         {/* <Stack.Navigator
