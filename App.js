@@ -22,6 +22,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import RootStackScreen from "./components/RootStackScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -179,13 +180,14 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <NavigationContainer>
-  <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
-          <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
-          <Drawer.Screen name='My Profile'  component={ProfileStack}/>
-          <Drawer.Screen name="Appointments" initialParams={({route})=>{ selectedDate: route.params.selectedDate}} component={List} />
-          <Drawer.Screen name="Settings"  component={SettingStack}/>
-          
-        </Drawer.Navigator>
+        <RootStackScreen/>
+          {/* <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
+            <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
+            <Drawer.Screen name='My Profile'  component={ProfileStack}/>
+            <Drawer.Screen name="Appointments" initialParams={({route})=>{ selectedDate: route.params.selectedDate}} component={List} />
+            <Drawer.Screen name="Settings"  component={SettingStack}/>
+            
+          </Drawer.Navigator> */}
       
         {/* <Stack.Navigator
           initialRouteName="Login"
