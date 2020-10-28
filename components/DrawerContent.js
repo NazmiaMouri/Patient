@@ -94,11 +94,11 @@ import moment from "moment";
                         onPress={()=>{
                             const date = moment().format("YYYY-MM-DD");
                             // const today = moment(date).format("Do MMMM, YYYY ");
-                            props.navigation.navigate("Appointments",
+                            props.navigation.navigate("Today")
                             // , {
                             // selectedDate: "Today",
-                            {matchDate: date,
-                            });
+                            // {matchDate: date,
+                            // });
                         }}
 
                    />

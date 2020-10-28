@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Login from "./components/Login";
+import Today from "./components/Today";
 
 import Detail from "./components/Detail";
 import List from "./components/List";
@@ -89,7 +90,7 @@ function ProfileStack({navigation}){
     </Stack.Navigator>
   )
 }
-function ListStack({navigation}){
+function TodayStack({navigation}){
   return(
     <Stack.Navigator screenOptions={{
       headerStyle: {
@@ -101,9 +102,9 @@ function ListStack({navigation}){
       },
     }}>
       <Stack.Screen
-            name="Appointments"
-            component={List}
-            options={({ navigation, route }) => ({
+            name="Today"
+            component={Today}
+            options={{
               headerTitle: 'Today',
               headerRight: () => (
                 
@@ -119,7 +120,7 @@ function ListStack({navigation}){
 ),
             
               headerLeft: () => {
-              
+              return(
                 <Icon
                name='bars'
                color='#fff'
@@ -129,8 +130,44 @@ function ListStack({navigation}){
              >
              
              </Icon>
-              },})}
+              )
+              }
+            }}
           />
+          <Stack.Screen name="Home" component={Calender} />
+          <Stack.Screen
+            name="Appointments"
+            component={List}
+            options={({ navigation, route }) => ({
+              headerTitle: route.params.selectedDate,
+              headerRight: (previous,) => (
+                
+                   <Icon
+                  name='calendar'
+                  color='#fff'
+                  size = {26}
+                  style={[styles.calenderBtnWrapper, styles.shadow]}
+                  onPress={() => navigation.navigate("Home")}
+                >
+                
+                </Icon>
+),
+            
+            //   headerLeft: () => {
+            //     return(
+            //     <Icon
+            //    name='bars'
+            //    color='#fff'
+            //    size = {26}
+            //    style={[styles.calenderBtnWrapper, styles.shadow]}
+            //    onPress={() => navigation.openDrawer()}
+            //  >
+             
+            //  </Icon>)
+            //   },
+            })}
+          />
+          <Stack.Screen name="Appointment Info" component={Detail} />
 
     </Stack.Navigator>
   )
@@ -184,7 +221,7 @@ export default function App() {
           {/* <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
             <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
             <Drawer.Screen name='My Profile'  component={ProfileStack}/>
-            <Drawer.Screen name="Appointments" initialParams={({route})=>{ selectedDate: route.params.selectedDate}} component={List} />
+            <Drawer.Screen name="Today"  component={TodayStack} />
             <Drawer.Screen name="Settings"  component={SettingStack}/>
             
           </Drawer.Navigator> */}

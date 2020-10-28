@@ -17,60 +17,64 @@ class List extends Component {
     super(props);
     this.state = {
       patient: PATIENTS,
-      date: this.props.route.params.matchDate,
+      date: moment().format("YYYY-MM-DD"),
     };
   }
   
-  componentDidUpdate() {
-    if(this.state.date == 'undefined'){
-      this.setState({date: moment().format("YYYY-MM-DD")})
-    }
-    else{
-      const newdate = this.props.route.params.matchDate;
-    if (moment(this.state.date).isSame(newdate)) {
+//   componentDidUpdate() {
+//     if(this.state.date == 'undefined'){
+//       this.setState({date: moment().format("YYYY-MM-DD")})
+//     }
+//     else{
+//       const newdate = this.props.route.params.matchDate;
+//     if (moment(this.state.date).isSame(newdate)) {
      
-    } else {
+//     } else {
      
-      this.setState({ date: newdate });
-    }
+//       this.setState({ date: newdate });
+//     }
 
-    }
+//     }
     
-  }
+//   }
 
   render() {
    
   
     const renderListItem = ({ item }) => {
+        const currentTime=moment().format('HH:mm ')
+        const currentMilliSec=moment.duration(currentTime)._milliseconds
+        console.log(currentTime)
+        console.log(currentMilliSec)
+        
      
-      // const currentTime=moment().format('hh:mm A')
       return (
         <View>
           <ListItem
             bottomDivider
             key={item.serialNo}
             title={
-              <Text >{item.name}</Text>
-            }
-            // title={
-            // <View style={{flexDirection : 'row' ,justifyContent:'space-between'}}> 
-            //   <Text style={{}}>{item.name}</Text>
-              
-            //   {
-            //   (currentTime === item.appointedTime || currentTime < item.appointedTime)?
-             
-            //  <Badge
-            //  value={<Text style={{ padding : 5,color:'#fff'}}> Active </Text>}
-            //    status="success"
-            // />
-            //  :
-            //  <Badge
-            //  value={<Text style={{ padding : 5 ,color:'#fff'}}> Inactive </Text>}
-            //    status="error"
-            // />
-              
-            //   }
-            //   </View>}
+                <View style={{flexDirection : 'row' ,justifyContent:'space-between'}}> 
+                  <Text >{item.name}</Text>
+                  
+                  {
+                  ( moment(currentMilliSec) <= (moment.duration(moment(item.appointedTime,['h:mm A']).format("HH:mm") )._milliseconds )) ?
+                //  (moment(currentTime).isAfter (moment(item.appointedTime,['h:mm A']).format("HH:mm"))) ?
+                 
+                 <Badge
+                 value={<Text style={{ padding : 5,color:'#fff'}}> Active </Text>}
+                   status="success"
+                />
+                 : 
+                 <Badge
+                 value={<Text style={{ padding : 5,color:'#fff'}}> Inactive </Text>}
+                   status="error"
+                 />
+                  }
+                 </View>}
+                
+                  
+                  
             subtitle={<View>
                       <Text style={{color:'gray'}} >Status : {item.status}</Text>
                       <Text  style={{color:'gray'}} >Appointed time : {item.appointedTime}</Text>
@@ -83,7 +87,6 @@ class List extends Component {
             leftAvatar={
               <View>
                 <Image source={item.image} style={{ width: 40, height: 40 }} />
-               
               </View>
             }
           />
@@ -91,10 +94,18 @@ class List extends Component {
       );
     };
     const { navigate } = this.props.navigation;
-     
     
-    // console.log(moment('2020-10-2').isAfter('2020-10-1') )
-    // console.log(moment('8:00 AM').isBefore('9:00 AM') )
+    const d1= moment.duration((moment('12:00 AM',['h:mm A']).format('HH:mm')))._milliseconds
+     
+    const d2= moment.duration((moment('12:00 PM',['h:mm A']).format('HH:mm')))._milliseconds
+    // console.log(moment(d1).isSame(d2))
+    // console.log(moment(d1).isBefore(d2))
+    // console.log(moment(d1).isAfter(d2))
+
+    // console.log(moment.duration(moment('8:00 AM',['h:mm A']).format("HH:mm") )._milliseconds )
+
+    // console.log(d1)
+    
     var list = this.state.patient.filter((patient) =>
       moment(patient.appointedDate).isSame(this.state.date)
     );
