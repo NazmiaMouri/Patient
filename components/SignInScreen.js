@@ -17,7 +17,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 // import { useTheme } from 'react-native-paper';
 
-// import { AuthContext } from '../components/context';
+import { AuthContext } from './context';
 
 // import Users from '../model/users';
 
@@ -29,7 +29,7 @@ function SignInScreen({navigation}) {
         check_textInputChange:false,
         secureTextEntry:true
     })
-
+const {signIn } =React.useContext(AuthContext)
     const textInputChange =(val) =>{
         if(val.length != 0){
             setData({
@@ -134,6 +134,9 @@ function SignInScreen({navigation}) {
 
               </View>
               <View style={styles.button}>
+                  <TouchableOpacity
+                  style={styles.signIn}
+                  onPress={()=>{signIn()}} >
                   <LinearGradient
                   colors={['#08d4c4','#01ab9d']}
                   style={styles.signIn}>
@@ -142,6 +145,9 @@ function SignInScreen({navigation}) {
                             Sign In
                       </Text>
                   </LinearGradient>
+
+                  </TouchableOpacity>
+                 
                   <TouchableOpacity  
                   onPress={()=>navigation.navigate('SignUpScreen')}
                   style={[styles.signIn,{

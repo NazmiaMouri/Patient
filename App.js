@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,10 +7,11 @@ import {
   View,
   Button,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import Login from "./components/Login";
 import Today from "./components/Today";
-
+import { AuthContext } from "./components/context";
 import Detail from "./components/Detail";
 import List from "./components/List";
 import Settings from "./components/Settings";
@@ -24,6 +25,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RootStackScreen from "./components/RootStackScreen";
+import { set } from "react-native-reanimated";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -207,24 +209,56 @@ function SettingStack({navigation}){
 
 export default function App() {
   const [login, setlogin] = useState(false)
-  const [isLoading, setisLoading] = useState()
+  const [isLoading, setisLoading] = useState(true)
   const [userToken, setuserToken] = useState()
-  function onlogin(log){
-    setlogin(log)
+
+  const authContext = React.useMemo(()=>({
+    signIn:()=>{
+      setuserToken('admin');
+      setisLoading(false);
+
+    },
+    signOut:()=>{
+      setuserToken(null);
+      setisLoading(false);
+    },
+    signUp:()=>{
+      setuserToken('admin');
+      setisLoading(false);
+    }
+  }))
+ 
+  useEffect(() => {
+    setTimeout(()=>{
+      setisLoading(false)
+    },1000)
+    
+  }, [])
+
+  if(isLoading){
+    return(
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+        <ActivityIndicator size='large'/>
+      </View>
+    )
   }
 
   return (
     <SafeAreaView style={styles.container}>
+      <AuthContext.Provider value={authContext}>
       <StatusBar style="auto" />
       <NavigationContainer>
-        {/* <RootStackScreen/> */}
-          <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
+        { userToken != null ?
+         <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
             <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
             <Drawer.Screen name='My Profile'  component={ProfileStack}/>
             <Drawer.Screen name="Today"  component={TodayStack} />
             <Drawer.Screen name="Settings"  component={SettingStack}/>
             
-          </Drawer.Navigator>
+          </Drawer.Navigator>  :  
+          <RootStackScreen/> }
+       
+          
       
         {/* <Stack.Navigator
           initialRouteName="Login"
@@ -280,6 +314,8 @@ export default function App() {
         
 
       </NavigationContainer>
+      </AuthContext.Provider>
+      
       
     </SafeAreaView>
   );
