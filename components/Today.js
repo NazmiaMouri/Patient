@@ -42,7 +42,7 @@ class List extends Component {
    
   
     const renderListItem = ({ item }) => {
-        const currentTime=moment().format('HH:mm ')
+        const currentTime=moment().format('HH:mm')
         const currentMilliSec=moment.duration(currentTime)._milliseconds
         console.log(currentTime)
         console.log(currentMilliSec)
@@ -54,7 +54,7 @@ class List extends Component {
             bottomDivider
             key={item.serialNo}
             title={
-                <View style={{flexDirection : 'row' ,justifyContent:'space-between'}}> 
+                <View style={{flexDirection : 'row' ,justifyContent:'space-between',width:'100%'}}> 
                   <Text >{item.name}</Text>
                   
                   {

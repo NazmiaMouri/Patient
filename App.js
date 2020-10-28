@@ -217,14 +217,14 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <RootStackScreen/>
-          {/* <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
+        {/* <RootStackScreen/> */}
+          <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
             <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
             <Drawer.Screen name='My Profile'  component={ProfileStack}/>
             <Drawer.Screen name="Today"  component={TodayStack} />
             <Drawer.Screen name="Settings"  component={SettingStack}/>
             
-          </Drawer.Navigator> */}
+          </Drawer.Navigator>
       
         {/* <Stack.Navigator
           initialRouteName="Login"
