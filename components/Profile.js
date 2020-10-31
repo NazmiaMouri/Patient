@@ -1,9 +1,25 @@
-  import React from 'react';
-import {Text} from 'react-native'
+import React from 'react';
+
+import { View, Text, Image } from 'react-native'
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
+
 
 function Profile() {
     return (
-        <Text > Profile</Text>
+      <Card>
+      <Card.Title>Dr. Robert</Card.Title>
+      <Card.Divider/>
+     
+            <View >
+              <Image
+                
+                resizeMode="cover"
+              
+              />
+              <Text></Text>
+            </View>
+        
+    </Card>
     )
 }
 

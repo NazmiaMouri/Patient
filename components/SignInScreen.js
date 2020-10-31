@@ -27,32 +27,45 @@ function SignInScreen({navigation}) {
         email:'',
         password:'',
         check_textInputChange:false,
-        secureTextEntry:true
+        secureTextEntry:true,
+        isValidUser:true,
+        isValidPassword:true
     })
 const {signIn } =React.useContext(AuthContext)
     const textInputChange =(val) =>{
-        if(val.length != 0){
+        if(val.trim().length >= 4){
             setData({
                 ...data,
                 email:val,
-                check_textInputChange:true 
+                check_textInputChange:true ,
+                isValidUser:true
             })
         }
         else{
             setData({
                 ...data,
                 email:val,
-                check_textInputChange:false
+                check_textInputChange:false,
+                isValidUser:false
             })
         }
     }
     const handlePasswordChange =(val) =>{
-        
+        if(val.trim().length >= 4){
             setData({
                 ...data,
                 password:val,
-                check_textInputChange:true 
+                isValidPassword:true
             })
+        }
+        else{
+            setData({
+                ...data,
+               
+                password:val,
+                isValidPassword:false
+            })
+        }
         
       
     }
@@ -61,6 +74,10 @@ const {signIn } =React.useContext(AuthContext)
             ...data,
             secureTextEntry: !data.secureTextEntry
         })
+    }
+    const loginHandle = ( userName, password) =>{
+        signIn(userName,password);
+
     }
     return (
       <View style={styles.container}>
@@ -98,9 +115,16 @@ const {signIn } =React.useContext(AuthContext)
                  
 
               </View>
+              {data.isValidUser ? null : 
+              <Animatable.View animation='fadeInLeft'>
+                  <Text style={styles.errorMsg}>Username must be 4 characters long !</Text>
+                  </Animatable.View>
+                  }
+
               <Text style={[styles.text_footer,
                {marginTop:35}]}
             >Password</Text>
+
               <View style={styles.action}>
                   <Feather 
                  name="lock"
@@ -133,10 +157,18 @@ const {signIn } =React.useContext(AuthContext)
                   
 
               </View>
+              {data.isValidPassword ? null : 
+              <Animatable.View animation='fadeInLeft' >
+                  <Text style={styles.errorMsg}>Password must be 4 characters long !</Text>
+                  </Animatable.View>
+                  }
+              <TouchableOpacity>
+                  <Text style={{color:'#009387',marginTop:15}}>Forget password</Text>
+              </TouchableOpacity>
               <View style={styles.button}>
                   <TouchableOpacity
                   style={styles.signIn}
-                  onPress={()=>{signIn()}} >
+                  onPress={()=>{loginHandle(data.email,data.password)}} >
                   <LinearGradient
                   colors={['#08d4c4','#01ab9d']}
                   style={styles.signIn}>
@@ -147,6 +179,7 @@ const {signIn } =React.useContext(AuthContext)
                   </LinearGradient>
 
                   </TouchableOpacity>
+
                  
                   <TouchableOpacity  
                   onPress={()=>navigation.navigate('SignUpScreen')}

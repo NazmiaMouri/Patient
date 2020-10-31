@@ -20,7 +20,7 @@ import Profile from "./components/Profile";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Dashboard from './components/Dashboard';
 import DrawerContent from './components/DrawerContent'
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -212,43 +212,101 @@ export default function App() {
   const [isLoading, setisLoading] = useState(true)
   const [userToken, setuserToken] = useState()
 
-  const authContext = React.useMemo(()=>({
-    signIn:()=>{
-      setuserToken('admin');
-      setisLoading(false);
+  const initialLoginState = useState({
 
+    isLoading: true,
+    userName: null,
+    userToken: null
+  });
+
+  const loginReducer = (prevState, action) =>{
+    switch(action.type){
+      case 'RETRIEVE_TOKEN':
+        return {
+          ...prevState,
+          userToken: action.token,
+          isLoading: false
+
+        };
+      case 'LOGIN':
+        return {
+          ...prevState,
+          userName:action.id,
+          userToken: action.token,
+          isLoading: false
+        };
+      case 'LOGOUT':
+        return {
+          ...prevState,
+          userName:null,
+          userToken: null,
+          isLoading: false
+        };
+      case 'REGISTER':
+        return {
+          ...prevState,
+          userName:action.id,
+          userToken: action.token,
+          isLoading: false
+        };
+    }
+  }
+  const [loginState,dispatch]= React.useReducer(loginReducer,initialLoginState)
+
+  const authContext = React.useMemo(()=>({
+    signIn:(userName,password)=>{
+      // setuserToken('admin');
+      // setisLoading(false);
+      let userToken;
+      userToken=null;
+      if(userName =='admin' && password =='pass'){
+        userToken ='123'
+      }
+     dispatch({type:'LOGIN', id: userName, token: userToken})
     },
     signOut:()=>{
-      setuserToken(null);
-      setisLoading(false);
+      // setuserToken(null);
+      // setisLoading(false);
+      dispatch({type:'LOGOUT'})
     },
     signUp:()=>{
-      setuserToken('admin');
-      setisLoading(false);
+      // setisLoading(false);
+      // let userToken;
+      // userToken=null;
+      // if(userName =='admin' && password =='pass'){
+      //   userToken ='123'
+    //   }
+    //  dispatch({type:'REGISTER', id: userName, token: userToken})
+      // setuserToken('admin');
+      // setisLoading(false);
     }
-  }))
+  }),[])
  
   useEffect(() => {
     setTimeout(()=>{
-      setisLoading(false)
+      // setisLoading(false)
+      let userToken;
+      
+      // userToken='123'
+      dispatch({type:'RETRIEVE_TOKEN',token: '123'})
     },1000)
     
   }, [])
 
-  if(isLoading){
+  if(loginState.isLoading){
     return(
       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-        <ActivityIndicator size='large'/>
+        <ActivityIndicator size='large' animation={true}/>
       </View>
     )
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <AuthContext.Provider value={authContext}>
+      <AuthContext.Provider value={authContext}  > 
       <StatusBar style="auto" />
-      <NavigationContainer>
-        { userToken != null ?
+      <NavigationContainer >
+        { loginState.userToken != null ?
          <Drawer.Navigator drawerContent= {props =>< DrawerContent {...props} /> } >
             <Drawer.Screen name='Dashboard'  component={DashboardStack}/>
             <Drawer.Screen name='My Profile'  component={ProfileStack}/>
@@ -325,7 +383,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    marginVertical: 50,
+    // marginVertical: 50,
     justifyContent: "center",
   },
   shadow: {

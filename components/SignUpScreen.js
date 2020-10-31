@@ -17,12 +17,11 @@ import Feather from 'react-native-vector-icons/Feather';
 
 // import { useTheme } from 'react-native-paper';
 
-// import { AuthContext } from '../components/context';
-
+import { AuthContext } from './context';
 // import Users from '../model/users';
 
 function SignUpScreen({navigation}) {
-
+    const {signUp } =React.useContext(AuthContext)
     const [data, setData]=React.useState({
         email:'',
         password:'',
@@ -189,7 +188,8 @@ function SignUpScreen({navigation}) {
               <View style={styles.button}>
                   <LinearGradient
                   colors={['#08d4c4','#01ab9d']}
-                  style={styles.signIn}>
+                  style={styles.signIn}
+                onPress={()=>signUpk()}>
                       <Text style={[styles.textSign,
                       {color:'#fff'}]} >
                             Sign Up

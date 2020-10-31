@@ -9,6 +9,8 @@ import {
   SafeAreaView,
 } from "react-native";
 import { ListItem, Avatar, Badge } from "react-native-elements";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Icon from "react-native-vector-icons/FontAwesome";
 import { PATIENTS } from "../shared/patients";
 import moment from "moment";
 
@@ -58,26 +60,34 @@ class List extends Component {
                   <Text >{item.name}</Text>
                   
                   {
-                  ( moment(currentMilliSec) <= (moment.duration(moment(item.appointedTime,['h:mm A']).format("HH:mm") )._milliseconds )) ?
-                //  (moment(currentTime).isAfter (moment(item.appointedTime,['h:mm A']).format("HH:mm"))) ?
+                  ( moment(currentMilliSec).isSameOrBefore(moment.duration(moment(item.appointedTime,['h:mm A']).format("HH:mm") )._milliseconds )) 
+                  ?
+                
                  
                  <Badge
-                 value={<Text style={{ padding : 5,color:'#fff'}}> Active </Text>}
+                 value={<Text style={{ padding : 5,color:'#fff'}}> Cont. </Text>}
                    status="success"
                 />
-                 : 
-                 <Badge
-                 value={<Text style={{ padding : 5,color:'#fff'}}> Inactive </Text>}
-                   status="error"
-                 />
+                 
+                 :
+                 <View>
+                    <Icon
+                 name="history"
+                 color='grey'
+                 size={20}
+                  />
+
+                 </View>
+               
+                
                   }
                  </View>}
                 
                   
                   
             subtitle={<View>
-                      <Text style={{color:'gray'}} >Status : {item.status}</Text>
-                      <Text  style={{color:'gray'}} >Appointed time : {item.appointedTime}</Text>
+                      <Text style={{color:'gray'}} > Status : {item.status}</Text>
+                      <Text  style={{color:'gray'}} > Appointed time : {item.appointedTime}</Text>
 
                      </View>
                      
@@ -95,17 +105,7 @@ class List extends Component {
     };
     const { navigate } = this.props.navigation;
     
-    const d1= moment.duration((moment('12:00 AM',['h:mm A']).format('HH:mm')))._milliseconds
-     
-    const d2= moment.duration((moment('12:00 PM',['h:mm A']).format('HH:mm')))._milliseconds
-    // console.log(moment(d1).isSame(d2))
-    // console.log(moment(d1).isBefore(d2))
-    // console.log(moment(d1).isAfter(d2))
-
-    // console.log(moment.duration(moment('8:00 AM',['h:mm A']).format("HH:mm") )._milliseconds )
-
-    // console.log(d1)
-    
+   
     var list = this.state.patient.filter((patient) =>
       moment(patient.appointedDate).isSame(this.state.date)
     );

@@ -19,11 +19,13 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from "moment";
+import { AuthContext } from './context';
 
 
 
  function DrawerContent(props) {
      const [isDarkTheme, setIsDarkTheme] = useState(false)
+     const {signOut}= React.useContext(AuthContext)
 
      const toggleTheme =()=>{
          setIsDarkTheme(!isDarkTheme)
@@ -141,7 +143,7 @@ import moment from "moment";
                             />
                         )}
                         label='Sign-Out'
-                        onPress={()=>{}}
+                        onPress={()=>{ signOut()}}
 
                    />
 

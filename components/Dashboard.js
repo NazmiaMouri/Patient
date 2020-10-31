@@ -1,10 +1,17 @@
 import React from 'react';
-import {Text} from 'react-native'
+import {View,Text} from 'react-native';
+import { AuthContext } from './context';
 
 function Dashboard() {
+    
     return (
-        <Text > Dashboard</Text>
+       
+    
+        <Text></Text>
+       
+       
     )
 }
+
 
 export default Dashboard

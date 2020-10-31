@@ -19,7 +19,7 @@ const SplashScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <View  style={styles.header}>
-               <Animatable.Image source={require('../assets/logo.png')}
+               <Animatable.Image animation="pulse" source={require('../assets/logo.png')}
                animation='pulse'
               
                style={styles.logo}
@@ -29,7 +29,7 @@ const SplashScreen = ({navigation}) => {
             </View>
             <Animatable.View style={styles.footer} 
             animation="fadeInUpBig">
-               <Text style={styles.title}>Stay connected with everyone!</Text>
+               <Text style={styles.title}>Making Healthcare digital !</Text>
                <Text style={styles.text}>Sign in with account</Text>
                <View style={styles.button}>
                <TouchableOpacity onPress={()=>navigation.navigate('SignInScreen')}>
@@ -38,7 +38,7 @@ const SplashScreen = ({navigation}) => {
                        
                         style={styles.signIn}
                     >
-                        <Text style={styles.textSign}>Get Started</Text>
+                        <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={styles.textSign}>Get Started</Animatable.Text>
                         <MaterialIcons 
                             name="navigate-next"
                             color="#fff"
@@ -81,22 +81,21 @@ const SplashScreen = ({navigation}) => {
           borderTopRightRadius: 30,
           paddingVertical: 50,
           paddingHorizontal: 30,
-        //   zIndex:1,
-        //   position:"absolute",
-        //   bottom:0
+     
       },
       logo: {
           width: height_logo,
           height: height_logo
       },
       title: {
-        //   color: '#05375a',
+     
           color:'#fff',
           fontSize: 30,
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          fontStyle: 'italic'
       },
       text: {
-        //   color: 'grey',
+        fontStyle: 'italic',
         color:'#fff',
           marginTop:5
       },
