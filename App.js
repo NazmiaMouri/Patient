@@ -107,7 +107,7 @@ function TodayStack({navigation}){
             name="Today"
             component={Today}
             options={{
-              headerTitle: 'Today',
+              // headerTitle: 'Today',
               headerRight: () => (
                 
                    <Icon
@@ -123,6 +123,7 @@ function TodayStack({navigation}){
             
               headerLeft: () => {
               return(
+              
                 <Icon
                name='bars'
                color='#fff'
@@ -132,6 +133,8 @@ function TodayStack({navigation}){
              >
              
              </Icon>
+             
+           
               )
               }
             }}
@@ -303,7 +306,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AuthContext.Provider value={{data: 'hello there',authContext}}  > 
+      <AuthContext.Provider value={{authContext}}  > 
       <StatusBar style="auto" />
       <NavigationContainer >
         { loginState.userToken != null ?
