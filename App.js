@@ -303,7 +303,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AuthContext.Provider value={authContext}  > 
+      <AuthContext.Provider value={{data: 'hello there',authContext}}  > 
       <StatusBar style="auto" />
       <NavigationContainer >
         { loginState.userToken != null ?

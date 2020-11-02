@@ -129,13 +129,3 @@ export const PATIENTS = [
     emerg: "false",
   }
 ];
-// { list ? 
-        
-//   <FlatList
-//     data={list}
-//     renderItem={renderListItem}
-//     keyExtractor={(item) => item.id.toString()}
-//   />
-//   :
-//  <View><Text h1>Empty</Text></View>
-//  }

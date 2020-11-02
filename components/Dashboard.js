@@ -3,11 +3,11 @@ import {View,Text} from 'react-native';
 import { AuthContext } from './context';
 
 function Dashboard() {
-    
+    const {data}= React.useContext(AuthContext)
     return (
        
     
-        <Text></Text>
+        <Text>{data}</Text>
        
        
     )
