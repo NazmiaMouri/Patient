@@ -23,12 +23,12 @@ import DrawerContent from './components/DrawerContent'
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import RootStackScreen from "./components/RootStackScreen";
 import { set } from "react-native-reanimated";
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+
 const Drawer = createDrawerNavigator();
 
 
@@ -47,6 +47,7 @@ function DashboardStack({navigation}){
       options={{
         headerLeft: () => {
          return(
+           <View style={{flexDirection:'row'}}>
           <Icon
          name='bars'
          color='#fff'
@@ -56,6 +57,17 @@ function DashboardStack({navigation}){
        >
        
        </Icon>
+        {/* <Icon
+        name='bars'
+        color='#fff'
+        size = {26}
+        style={[styles.calenderBtnWrapper, styles.shadow]}
+        onPress={() => navigation.openDrawer()}
+      >
+      
+      </Icon> */}
+           </View>
+         
          )}
       }}
       />
@@ -306,7 +318,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AuthContext.Provider value={{authContext}}  > 
+      <AuthContext.Provider value={authContext}  > 
       <StatusBar style="auto" />
       <NavigationContainer >
         { loginState.userToken != null ?

@@ -99,7 +99,7 @@ export const PATIENTS = [
   },{
     id: 6,
     appointedTime: "09:00 AM",
-    appointedDate: "2020-11-01",
+    appointedDate: "2020-11-03",
     name: "Lio",
     image: require("../assets/man.png"),
     age: "30",
@@ -115,7 +115,7 @@ export const PATIENTS = [
   {
     id: 7,
     appointedTime: "10:00 PM",
-    appointedDate: "2020-11-02",
+    appointedDate: "2020-11-04",
     name: "Bella",
     image: require("../assets/man.png"),
     age: "20",

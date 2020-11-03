@@ -21,6 +21,7 @@ export class Calender extends Component {
     };
     this.onDayPress = this.onDayPress.bind(this);
   }
+  // Fetching the appointed dates from json file and pushing then in to date array before component mount
   componentWillMount() {
     var dt = [];
     this.state.patient.map((each) => dt.push(each.appointedDate));
@@ -28,6 +29,7 @@ export class Calender extends Component {
       date: dt,
     });
   }
+  //After component mounts converting the date Array to an object to mark the dates in the calender
   componentDidMount() {
     
     var obj = this.state.date.reduce(
@@ -36,12 +38,16 @@ export class Calender extends Component {
     );
     this.setState({ marked: obj });
   }
- 
+ //---------- What will happend when a doctor prees the marked date on the calender------------???
+
+ //************ firs the selected date will be assigned to the selected variable  ********************* */
+
   onDayPress(day) {
     this.setState({
       selected: day.dateString,
     });
   }
+  // ******************** If the selected date is presented in the date array then formating the selected date and passing it ti the Appointments list page for the header and to view the patients of that selected date
   componentDidUpdate() {
     var result = this.state.date.filter(
       (date) => date === this.state.selected
@@ -59,16 +65,14 @@ export class Calender extends Component {
       });
     } else {
       <View>
-        <Text styles={{ textAlignment: "center" }}>
-          No appointment available
-        </Text>
+       
       </View>;
     }
   }
-  _onPressBack() {
-    const { goBack } = this.props.navigation;
-    goBack();
-  }
+  // _onPressBack() {
+  //   const { goBack } = this.props.navigation;
+  //   goBack();
+  // }
   render() {
    
     const today = moment().format("YYYY-MM-DD");
